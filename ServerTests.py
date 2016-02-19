@@ -1,9 +1,8 @@
-__author__ = 'klaudiar'
-
 import socket
-from Server import *
 
-class Server_Tests:
+
+class ServerTests:
+    # firstly run Server in another terminal
     def __init__(self):
         self.test()
 
@@ -15,14 +14,13 @@ class Server_Tests:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.connect(server_address)
         message = '1'
-        sock.sendto(message.encode('utf-8'),server_address)
-        response = sock.recv(1024).decode('utf-8')
-        print(type(response))
-        if response == "Wybrales 1 - kamien":
+        sock.sendto(message, server_address)
+        response = sock.recv(1024)
+        if response == 'You chose 1 - rock':
             print('OK')
-        sock.recv(1024).decode('utf-8')
-        sock.recv(1024).decode('utf-8')
+        sock.recv(1024)
+        sock.recv(1024)
         sock.close()
 
 if __name__ == '__main__':
-    client = Server_Tests()
+    client = ServerTests()
